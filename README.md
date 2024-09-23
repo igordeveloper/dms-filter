@@ -12,79 +12,6 @@ Use composer to add DMS\Filter to your app
 
 ## Usage
 
-### Annotation way
-
-Your Entity:
-
-```php
-<?php
-
-namespace App\Entity;
-
-//Import Annotations
-use DMS\Filter\Rules as Filter;
-
-class User
-{
-
-    /**
-    * @Filter\StripTags()
-    * @Filter\Trim()
-    * @Filter\StripNewlines()
-    *
-    * @var string
-    */
-    public string $name;
-
-    /**
-    * @Filter\StripTags()
-    * @Filter\Trim()
-    * @Filter\StripNewlines()
-    *
-    * @var string
-    */
-    public string $email;
-
-}
-?>
-```
-
-Filtering:
-
-```php
-<?php
-    //Get Doctrine Reader
-    $reader = new Annotations\AnnotationReader();
-    $reader->setEnableParsePhpImports(true);
-
-    //Load AnnotationLoader
-    $loader = new Mapping\Loader\AnnotationLoader($reader);
-    $this->loader = $loader;
-
-    //Get a MetadataFactory
-    $metadataFactory = new Mapping\ClassMetadataFactory($loader);
-
-    //Get a Filter
-    $filter = new DMS\Filter\Filter($metadataFactory);
-
-
-    //Get your Entity
-    $user = new App\Entity\User();
-    $user->name = "My <b>name</b>";
-    $user->email = " email@mail.com";
-
-    //Filter you entity
-    $filter->filter($user);
-
-    echo $user->name; //"My name"
-    echo $user->email; //"email@mail.com"
-?>
-```
-
-Full example: https://gist.github.com/1098352
-
-### Attribute way
-
 Your Entity:
 
 ```php
@@ -136,13 +63,6 @@ Filtering:
     echo $user->email; //"email@mail.com"
 ?>
 ```
-
-## Dependencies
-
-This package relies on these external libraries:
-
-* Doctrine Annotations
-
 ## Contributing
 
 Feel free to send pull requests, just follow these guides:
@@ -157,4 +77,4 @@ Feel free to send pull requests, just follow these guides:
 
 This library is inspired by the Symfony 2 Validator component and is meant to work alongside it.
 
-Symfony 2 Validator: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Validator
+Symfony Validator: https://github.com/symfony/symfony/blob/master/src/Symfony/Component/Validator

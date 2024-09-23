@@ -10,8 +10,6 @@ use Attribute;
  * RegExp Rule
  *
  * Filter using preg_replace and unicode or non-unicode patterns
- *
- * @Annotation
  */
 #[Attribute]
 class RegExp extends Rule
